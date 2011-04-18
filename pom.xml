@@ -18,6 +18,7 @@
          <module>encontra-convert-api</module>
          <module>encontra-convert-svg</module>
          <module>encontra-convert-dxf</module>
+		 <module>encontra-convert-psd</module>
      </modules>
 
 </project>

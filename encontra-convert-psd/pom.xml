@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>EnContRA PSD Conversion</name>
+    <packaging>jar</packaging>
+    <groupId>pt.inevo.encontra</groupId>
+    <artifactId>encontra-convert-psd</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>pt.inevo.encontra</groupId>
+        <artifactId>encontra-convert</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>pt.inevo.encontra</groupId>
+            <artifactId>encontra-convert-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>psd-library</groupId>
+            <artifactId>psd-library</artifactId>
+            <version>r104</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-codec</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-transcoder</artifactId>
+            <version>1.7</version>
+        </dependency>
+    </dependencies>
+</project>
+
