@@ -1,0 +1,17 @@
+<svg contentScriptType="text/ecmascript" width="454"
+     xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"
+     channels="3" depth="8" contentStyleType="text/css" height="340"
+     preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+     version="1.0">
+  
+  <g>
+	  <defs>
+		<filter id="drop-shadow" filterUnits="userSpaceOnUse" width="454" height="340">
+			  <feGaussianBlur in="SourceAlpha" result="blur-out" stdDeviation="4" />
+			  <feOffset in="blur-out" result="the-shadow" dx="5" dy="5"/> 
+			  <feBlend in="SourceGraphic" in2="the-shadow" mode="normal"/>
+		</filter>
+	  </defs>
+	<rect style="fill: rgb(206,22,22)" x="59" y="95" width="333" height="165" filter="url(#drop-shadow)" />
+  </g>
+</svg>
