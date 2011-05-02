@@ -394,6 +394,47 @@ public class PSDConverter implements Converter {
                 Comment innerComment = document.createComment("BEVEL");
                 filtersElement.appendChild(innerComment);
 
+                Element gaussianBlur = document.createElement("feGaussianBlur");
+                filtersElement.appendChild(gaussianBlur);
+                gaussianBlur.setAttribute("in", "SourceAlpha");
+                gaussianBlur.setAttribute("stdDeviation", "4");
+                gaussianBlur.setAttribute("result", layerName + "-bevelBlur");
+
+                Element specularLighting = document.createElement("feSpecularLighting");
+                filtersElement.appendChild(specularLighting);
+                specularLighting.setAttribute("in", layerName + "-bevelBlur");
+                specularLighting.setAttribute("surfaceScale", "5");
+                specularLighting.setAttribute("specularConstant", "0.75");
+                specularLighting.setAttribute("specularExponent", "10");
+                specularLighting.setAttribute("result", layerName + "-bevelSpecularLighting");
+                specularLighting.setAttribute("style", "lighting-color:rgb(187,187,187)");
+
+                Element fePoint = document.createElement("fePointLight");
+                specularLighting.appendChild(fePoint);
+                fePoint.setAttribute("x", "-5000");
+                fePoint.setAttribute("y", "-10000");
+                fePoint.setAttribute("z", "20000");
+
+                Element feCompositeFirst = document.createElement("feComposite");
+                filtersElement.appendChild(feCompositeFirst);
+                feCompositeFirst.setAttribute("in", layerName + "-bevelSpecularLighting");
+                feCompositeFirst.setAttribute("in2", "SourceAlpha");
+                feCompositeFirst.setAttribute("operator", "in");
+                feCompositeFirst.setAttribute("result", layerName + "-bevelSpecComposite");
+
+                Element finalComposite = document.createElement("feComposite");
+                filtersElement.appendChild(finalComposite);
+                finalComposite.setAttribute("in", "SourceGraphic");
+                finalComposite.setAttribute("in2", layerName + "-bevelSpecComposite");
+                finalComposite.setAttribute("operator", "arithmetic");
+                finalComposite.setAttribute("k1", "0");
+                finalComposite.setAttribute("k2", "1");
+                finalComposite.setAttribute("k3", "1");
+                finalComposite.setAttribute("k4", "0");
+                finalComposite.setAttribute("result", layerName + "-bevelFilter");
+
+                elementsToMerge.add(finalComposite);
+
             } else if (effect instanceof SolidFillEffect){
                 Comment innerComment = document.createComment("SOLID FILL");
                 filtersElement.appendChild(innerComment);

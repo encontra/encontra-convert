@@ -11,8 +11,8 @@ import junit.framework.TestCase;
 public class PSDConverterTest extends TestCase {
 
     private PSDConverter converter;
-    private static String _test_filename="/red_rectangle_effects.psd";
-    private static String _output_filename="red_rectangle_effects.svg";
+    private static String _test_filename="/red_rectangle_bevel.psd";
+    private static String _output_filename="red_rectangle_bevel.svg";
 
     public PSDConverterTest(String testName) {
         super(testName);
