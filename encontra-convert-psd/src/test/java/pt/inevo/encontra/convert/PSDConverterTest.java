@@ -11,8 +11,9 @@ import junit.framework.TestCase;
 public class PSDConverterTest extends TestCase {
 
     private PSDConverter converter;
-    private static String _test_filename="/red_rectangle_bevel.psd";
-    private static String _output_filename="red_rectangle_bevel.svg";
+    private static String _test_filename="/color_pill.psd";
+    private static String _output_filename="color_pill.svg";
+    private static String _output_filename_jpg="color_pill.jpg";
 
     public PSDConverterTest(String testName) {
         super(testName);
@@ -32,12 +33,26 @@ public class PSDConverterTest extends TestCase {
     /**
      * Test of converting a PSD file to a SVG.
      */
-    public void testRead() {
-
+    public void testConvertToSVG() {
         try {
             InputStream input = getClass().getResourceAsStream(_test_filename);
             OutputStream output=new FileOutputStream(new File(_output_filename));
-            converter.convertToMimeType("psd",input,output);
+            converter.convertToMimeType("svg",input,output);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    /**
+     * Test of converting a PSD file to a SVG.
+     */
+    public void testConvertToJPG() {
+        try {
+            InputStream input = getClass().getResourceAsStream(_test_filename);
+            OutputStream output=new FileOutputStream(new File(_output_filename_jpg));
+//            converter.convertToMimeType("image/jpeg",input,output);
+            converter.convertToMimeType("image/png",input,output);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
