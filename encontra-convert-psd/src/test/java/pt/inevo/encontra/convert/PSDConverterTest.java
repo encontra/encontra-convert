@@ -1,8 +1,8 @@
 package pt.inevo.encontra.convert;
 
-import java.io.*;
-import java.io.File;
 import junit.framework.TestCase;
+
+import java.io.*;
 
 /**
  * Simple class to test the PSD Converter.
@@ -11,10 +11,11 @@ import junit.framework.TestCase;
  */
 public class PSDConverterTest extends TestCase {
 
-    private PSDConverter converter;
+    private PSDConverterFactory converter;
     private static String _test_filename="/red_rectangle_dropshadow.psd";
     private static String _output_filename="red_rectangle_dropshadow.svg";
-    private static String _output_filename_jpg="red_rectangle_dropshadow.png";
+    private static String _output_filename_png ="red_rectangle_dropshadow.png";
+    private static String _output_filename_jpeg ="red_rectangle_dropshadow.jpeg";
 
     public PSDConverterTest(String testName) {
         super(testName);
@@ -23,7 +24,7 @@ public class PSDConverterTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        converter=new PSDConverter();
+        converter=new PSDConverterFactory();
     }
 
     @Override
@@ -41,7 +42,6 @@ public class PSDConverterTest extends TestCase {
             converter.convertToMimeType("image/svg+xml",input,output);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -51,11 +51,23 @@ public class PSDConverterTest extends TestCase {
     public void testConvertToPNG() {
         try {
             InputStream input = getClass().getResourceAsStream(_test_filename);
-            OutputStream output=new FileOutputStream(new File(_output_filename_jpg));
+            OutputStream output=new FileOutputStream(new File(_output_filename_png));
             converter.convertToMimeType("image/png",input,output);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
 
+    /**
+     * Test of converting a PSD file to a PNG.
+     */
+    public void testConvertToJPEG() {
+        try {
+            InputStream input = getClass().getResourceAsStream(_test_filename);
+            OutputStream output=new FileOutputStream(new File(_output_filename_jpeg));
+            converter.convertToMimeType("image/jpeg",input,output);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

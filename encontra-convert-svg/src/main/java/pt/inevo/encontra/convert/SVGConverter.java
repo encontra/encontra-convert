@@ -16,9 +16,7 @@ import java.io.*;
 
 public class SVGConverter implements Converter{
 
-
-    protected final ConverterFactory<Transcoder> factory = new ConverterFactory<Transcoder>();
-
+    protected final ConverterFactory factory = new ConverterFactory();
 
     public SVGConverter() {
 
@@ -29,7 +27,7 @@ public class SVGConverter implements Converter{
         factory.addConverter("image/tiff", TIFFTranscoder.class);
     }
     public void convertToMimeType(String mimetype, InputStream input, OutputStream output) {
-        Transcoder t=factory.createConverter(mimetype);
+        Transcoder t = (Transcoder)factory.createConverter(mimetype);
 
 
         // Set the transcoder input and output.
